@@ -3,9 +3,7 @@ package keygen
 import (
 	"archive/zip"
 	"bytes"
-	"io"
 	"log"
-	"os"
 
 	"github.com/purnaresa/bulwark/rsa-encryption"
 )
@@ -46,15 +44,6 @@ func GenerateKeyPair() (output []byte, err error) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	file, err := os.Create("key-pair.zip")
-	if err != nil {
-		log.Fatal(err)
-	}
-	// buf.
-	if _, err = io.Copy(file, buf); err != nil {
-		log.Fatal(err)
-	}
-	file.Close()
 
 	output = buf.Bytes()
 	return
